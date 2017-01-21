@@ -4,16 +4,10 @@ import RadioWavesEngine from "./engine.js";
 import abilityTypes from "./abilityTypes.js";
 import abilityCards from "./abilityCards.js";
 import encounterCards from "./encounterCards.js";
+import CardList from "./CardList.jsx";
 import Encounter from "./Encounter.jsx";
 
-let samplePlayerLibrary = {
-	repetitionWar: -1,
-	dyingSaint: -1,
-	seriousScheme: -1,
-	missingMojo: 2
-};
-
-let game = new RadioWavesEngine(samplePlayerLibrary, abilityTypes, abilityCards, encounterCards);
+let game = new RadioWavesEngine([], abilityTypes, abilityCards, encounterCards);
 
 class App extends Component {
 	constructor(props) {
@@ -26,7 +20,15 @@ class App extends Component {
 	render() {
 		if (game.gameState == "started") {
 			return (
-				<Encounter encounterCard={game.currentEncounter}></Encounter>
+				<div>
+					<h1>Cards in your deck:</h1>
+					<CardList cards={game.deck} allAbilityCards={game.allAbilityCards}></CardList>
+					<Encounter encounterCard={game.currentEncounter}></Encounter>
+					<h1>Cards in your hand:</h1>
+					<CardList cards={game.hand} allAbilityCards={game.allAbilityCards}></CardList>
+					<h1>Cards in your discard pile:</h1>
+					<CardList cards={game.discardPile} allAbilityCards={game.allAbilityCards}></CardList>
+				</div>
 			);
 		} else {
 
@@ -60,11 +62,11 @@ class App extends Component {
 					return (
 						<div>
 							{backButton}
-							<Deckbuilder game={game} playerWorkingLibrary={game.workingLibrary} playerDeck={game.deck} allAbilityCards={game.allAbilityCards} addCardFromLibraryToDeck={(cardID) => {
-								game.addCardFromLibraryToDeck(cardID);
+							<Deckbuilder game={game} playerWorkingLibrary={game.workingLibrary} playerDeck={game.deck} getCardByID={game.getCardByID} addCardFromWorkingLibraryToDeck={(cardID) => {
+								game.addCardFromWorkingLibraryToDeck(cardID);
 								this.forceUpdate();
-							}} putCardBackFromDeckToLibrary={(cardID) => {
-								game.putCardBackFromDeckToLibrary(cardID);
+							}} putCardBackFromDeckToWorkingLibrary={(cardID) => {
+								game.putCardBackFromDeckToWorkingLibrary(cardID);
 								this.forceUpdate();
 							}} startGame={() => {
 								game.startGame();
