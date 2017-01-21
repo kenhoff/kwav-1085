@@ -1,23 +1,34 @@
-module.exports = [{
-	name: "Vicious Orc",
-	resistances: {
-		"strength": {
-			value: 3,
-			attemptText: "",
-			successText: "",
-			failureText: ""
-		},
-		"magic": {
-			value: 2,
-			attemptText: "",
-			successText: "",
-			failureText: ""
-		},
-		"stealth": {
-			value: 1,
-			attemptText: "",
-			successText: "",
-			failureText: ""
-		}
-	}
-}];
+module.exports = {
+	randomEncounterCards: [{
+		name: "Caller",
+		text: "Hey mister DJ...my friends and I are throwing it back at the disco tonight. Play us something to get us there?",
+		successText: "Aw yeah, we're feeling that. Thanks sugar :)",
+		failureText: "Hmmmm...maybe next time, honey.",
+		resistances: [
+			"soulful",
+			"driving",
+			"melodic",
+		]
+	}, {
+		name: "Producer",
+		text: "Kid! I don't get it...we're just not clicking with the young, hackery kids of today. Do something about it!",
+		successText: "Ratings are through the roof! Good work kid.",
+		failureText: "Ah, crap...guess I'm gonna have to hold off on that boat for a little bit longer...",
+		resistances: [
+			"driving",
+			"melodic",
+			"soulful",
+		]
+	}, {
+		name: "Evening",
+		text: "You look out over the twinkling lights of LA. The air is cool, quiet, pensive. What do all of those night souls want to hear tonight?",
+		successText: "Yeah. That was the right track. You can feel it.",
+		failureText: "Huh. That didn't feel right. Gotta switch it up a little bit.",
+		resistances: [
+			"melodic",
+			"soulful",
+			"driving",
+		]
+	}],
+	scriptedEncounterCards: []
+}

@@ -3,6 +3,14 @@ module.exports = function(playerLibrary, abilityTypes, abilityCards, encounterCa
 	this.allAbilityCards = abilityCards;
 	this.encounterCards = encounterCards;
 
+	this.gameState = "not-started"
+
+	this.startGame = function() {
+		this.gameState = "started"
+			// load first encounter
+		this.currentEncounter = encounterCards.randomEncounterCards[Math.floor(Math.random() * encounterCards.randomEncounterCards.length)]
+		console.log(this.currentEncounter);
+	}
 
 	this.deck = {};
 

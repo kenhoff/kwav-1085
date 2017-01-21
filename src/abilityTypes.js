@@ -1,11 +1,11 @@
 module.exports = {
-	"strength": {
-		name: "Strength"
+	"soulful": {
+		name: "Soulful"
 	},
-	"magic": {
-		name: "Magic"
+	"driving": {
+		name: "Driving"
 	},
-	"stealth": {
-		name: "Stealth"
+	"melodic": {
+		name: "Melodic"
 	}
 };
