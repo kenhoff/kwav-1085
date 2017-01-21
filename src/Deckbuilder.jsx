@@ -1,33 +1,21 @@
 import React, {PropTypes} from 'react'
+// import Card from "./Card.jsx";
+import CardList from "./CardList.jsx";
 
 class Deckbuilder extends React.Component {
-	// <h2>{`cards in your deck: ${totalCards} / ${this.props.maxCardsAllowed}`}</h2>
+
 	render() {
 		return (
 			<div>
 				<h1>this the deckbuilding part</h1>
-				<h2>cards in your library</h2>
-				<div>{this.props.playerWorkingLibrary.map((card) => {
-						return (
-							<div key={Math.random()}>
-								<div>{`${card.title}`}</div>
-								<button onClick={() => {
-									this.props.addCardFromWorkingLibraryToDeck(card.id)
-								}}>Add to deck</button>
-							</div>
-						)
-					})}</div>
-				<h2>cards in your deck</h2>
-				<div>{this.props.playerDeck.map((card) => {
-						return (
-							<div key={Math.random()}>
-								<div >{`${card.title}`}</div>
-								<button onClick={() => {
-									this.props.putCardBackFromDeckToWorkingLibrary(card.id)
-								}}>Put back in library</button>
-							</div>
-						)
-					})}</div>
+				<h2>cards in your library (click to move to deck)</h2>
+				<CardList cards={this.props.playerWorkingLibrary} actionWhenClicked={(cardID) => {
+					this.props.addCardFromWorkingLibraryToDeck(cardID);
+				}}></CardList>
+				<h2>cards in your deck (click to move to library)</h2>
+					<CardList cards={this.props.playerDeck} actionWhenClicked={(cardID) => {
+						this.props.putCardBackFromDeckToWorkingLibrary(cardID)
+					}}></CardList>
 				<h2>All done?</h2>
 				<button onClick={this.props.startGame}>start game</button>
 			</div>
@@ -38,7 +26,6 @@ class Deckbuilder extends React.Component {
 Deckbuilder.propTypes = {
 	playerWorkingLibrary: PropTypes.array.isRequired,
 	playerDeck: PropTypes.array.isRequired,
-	getCardByID: PropTypes.func.isRequired,
 	addCardFromWorkingLibraryToDeck: PropTypes.func.isRequired,
 	putCardBackFromDeckToWorkingLibrary: PropTypes.func.isRequired,
 	maxCardsAllowed: PropTypes.number,

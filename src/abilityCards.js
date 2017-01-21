@@ -18,6 +18,61 @@ module.exports = [{
 	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
 	type: "driving",
 	rarity: 2
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "melodic",
+	rarity: 2
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "soulful",
+	rarity: 2
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "driving",
+	rarity: 3
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "melodic",
+	rarity: 3
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "soulful",
+	rarity: 3
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "driving",
+	rarity: 4
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "melodic",
+	rarity: 4
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "soulful",
+	rarity: 4
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "driving",
+	rarity: 5
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "melodic",
+	rarity: 5
+}, {
+	id: "missingMojo",
+	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
+	type: "soulful",
+	rarity: 5
 }]
 
 /*
