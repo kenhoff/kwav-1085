@@ -1,21 +1,29 @@
 module.exports = function(playerLibrary, abilityTypes, abilityCards, encounterCards) {
-	this.playerLibrary = playerLibrary;
 	this.abilityTypes = abilityTypes;
 	this.allAbilityCards = abilityCards;
 	this.encounterCards = encounterCards;
 
-	this.workingLibrary = Object.assign({}, this.playerLibrary);
 
 	this.deck = {};
 
 	this.sessionRunning = false;
+
+	// the player library is all cards that the player owns
+	this.playerLibrary = playerLibrary;
+
+	// the "working library" is the counts of cards left in the player's library - usually considered the "library" when the player is building decks
+	this.workingLibrary = Object.assign({}, this.playerLibrary);
+
+	this.resetWorkingLibrary = function() {
+		this.workingLibrary = Object.assign({}, this.playerLibrary);
+	}
 
 	this.addCardFromLibraryToDeck = function(cardID) {
 		// check to see if the card is available from the player library - either that the count is above 0, or it is -1 (unlimited)
 		// console.log(`adding ${cardID} from library to deck...`);
 		if (!([cardID] in this.workingLibrary)) {
 			throw `Can't add card ${cardID} - the card isn't in the player's library.`;
-		} else if (this.workingLibrary[cardID] == 0) {
+		} else if (this.workingLibrary[cardID] === 0) {
 			throw `Can't add card ${cardID}: ${this.allAbilityCards[cardID].title} - there aren't any more of those cards left in the player's library.`;
 		} else {
 			if ([cardID] in this.deck) {
@@ -26,7 +34,7 @@ module.exports = function(playerLibrary, abilityTypes, abilityCards, encounterCa
 				// else, if doesn't exist in this.deck, set equal to 1
 				this.deck[cardID] = 1;
 			}
-			if (this.workingLibrary[cardID] != -1) {
+			if (this.workingLibrary[cardID] !== -1) {
 				// if it's an unlimited card, don't decrement from the library
 				this.workingLibrary[cardID] -= 1;
 			}
@@ -40,7 +48,7 @@ module.exports = function(playerLibrary, abilityTypes, abilityCards, encounterCa
 		} else {
 			this.deck[cardID] -= 1;
 			// if card in working library is not -1, then increment in working library
-			if (this.workingLibrary[cardID] != -1) {
+			if (this.workingLibrary[cardID] !== -1) {
 				this.workingLibrary[cardID] += 1;
 			}
 		}

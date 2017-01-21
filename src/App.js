@@ -1,5 +1,18 @@
 import React, {Component} from 'react';
-import game from "./engine.js";
+import Deckbuilder from "./Deckbuilder.jsx";
+import RadioWavesEngine from "./engine.js";
+import abilityTypes from "./abilityTypes.js";
+import abilityCards from "./abilityCards.js";
+import encounterCards from "./encounterCards.js";
+
+let samplePlayerLibrary = {
+	repetitionWar: -1,
+	dyingSaint: -1,
+	seriousScheme: -1,
+	missingMojo: 2
+};
+
+let game = new RadioWavesEngine(samplePlayerLibrary, abilityTypes, abilityCards, encounterCards);
 
 class App extends Component {
 	constructor(props) {
@@ -10,6 +23,10 @@ class App extends Component {
 		}
 	}
 	render() {
+		const backButton = <button onClick={() => {
+			this.setState({menuState: "main-menu"});
+		}}>back to main menu</button>
+
 		switch (this.state.menuState) {
 			case "main-menu":
 				return (
@@ -32,19 +49,25 @@ class App extends Component {
 						}}>Credits</button>
 					</div>
 				);
-				break;
 			case "deckbuilding":
 				return (
 					<div>
-						<button onClick={() => {
-							this.setState({menuState: "main-menu"});
-						}}>back to main menu</button>
-						<h1>
-							dis da deckbuilding part
-						</h1>
+						{backButton}
+						<Deckbuilder game={game} playerWorkingLibrary={game.workingLibrary} playerDeck={game.deck} allAbilityCards={game.allAbilityCards} addCardFromLibraryToDeck={(cardID) => {
+							game.addCardFromLibraryToDeck(cardID);
+							this.forceUpdate();
+						}} putCardBackFromDeckToLibrary={(cardID) => {
+							game.putCardBackFromDeckToLibrary(cardID);
+							this.forceUpdate();
+						}} startGame={() => {
+							this.setState({menuState: "game-loop"});
+						}}></Deckbuilder>
 					</div>
 				);
-				break;
+			case "game-loop":
+				return (
+					<div>this is the game!</div>
+				);
 			case "record-store":
 				return (
 					<div>
@@ -56,7 +79,6 @@ class App extends Component {
 						</h1>
 					</div>
 				);
-				break;
 			case "import-game":
 				return (
 					<div>
@@ -68,7 +90,6 @@ class App extends Component {
 						</h1>
 					</div>
 				);
-				break;
 			case "export-game":
 				return (
 					<div>
@@ -80,7 +101,6 @@ class App extends Component {
 						</h1>
 					</div>
 				);
-				break;
 			case "credits":
 				return (
 					<div>
@@ -91,9 +111,11 @@ class App extends Component {
 							Bananacat + Kasey + Josh + Ken!
 						</h1>
 					</div>
-
 				);
-				break;
+			default:
+				return (
+					<div>{`¯\\_(ツ)_/¯`}</div>
+				)
 		}
 	}
 }
