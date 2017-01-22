@@ -8,7 +8,8 @@ module.exports = {
 			"pump",
 			"chillout",
 			"funky",
-		]
+		],
+		image: "/img/caller1.png"
 	}, {
 		name: "Producer",
 		text: "Kid! I don't get it...we're just not clicking with the young, hackery kids of today. Do something about it!",
@@ -18,7 +19,8 @@ module.exports = {
 			"pump",
 			"chillout",
 			"funky",
-		]
+		],
+		image: "/img/producer1.png"
 	}, {
 		name: "Evening",
 		text: "You look out over the twinkling lights of LA. The air is cool, quiet, pensive. What do all of those night souls want to hear tonight?",
@@ -28,7 +30,8 @@ module.exports = {
 			"pump",
 			"chillout",
 			"funky",
-		]
+		],
+		image: "/img/evening1.png"
 	}],
 	scriptedEncounterCards: []
 }

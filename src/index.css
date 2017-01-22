@@ -8,25 +8,35 @@ orange: FA1505
 
 * {
     box-sizing: border-box;
+    letter-spacing: 0.03em;
 }
-body {
+html, body {
+    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Righteous', cursive;
     color: white;
+    background-image: url("/img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-color: #490e61;
 }
-.container {
-    height: 100vh;
-    width: 100vw;
+#root {
+    height: 100%;
+    width: 100%;
 }
 .logo {
     font-family: 'Permanent Marker', cursive;
     font-size: 6em;
     transform: skewX(-7deg) rotate(-7deg);
-    color: #FA056F;
+    color: rgb(255, 0, 196);
 }
 .main-menu {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -36,6 +46,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+.overlay-bg {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .deckbuilder {
     display: flex;
@@ -129,12 +142,29 @@ button {
     padding: 1em;
     margin: 1em;
     font-family: 'Righteous', cursive;
-    border: none;
-    color: #FA056F;
-    background-color: #32FA05
+    border: 2px solid rgb(255, 0, 196);;
+    color: rgb(255, 0, 196);
+    background-color: black
 }
 img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.player-cards-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.encounter {
+    max-width: 400px;
 }

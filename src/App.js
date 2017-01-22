@@ -37,21 +37,32 @@ class App extends Component {
 	}
 	render() {
 		if (game.gameState === "started") {
+			// <h1>Cards in your deck:</h1>
+			// <CardList cards={game.deck}></CardList>
 			return (
-				<div className="container">
-					<div>{`current level: ${game.currentLevel}`}</div>
-					<h1>Cards in your deck:</h1>
-					<CardList cards={game.deck}></CardList>
-					<Encounter encounterCard={game.currentEncounter}></Encounter>
-					<h1>Cards in your hand:</h1>
-					<CardList cards={game.hand} actionWhenClicked={(cardID) => {
-						game.playCardFromHandIntoCurrentEncounter(cardID);
-						this.forceUpdate();
-					}}></CardList>
-					<h1>Cards in your discard pile:</h1>
-					<CardList cards={game.discardPile}></CardList>
+				<div className="game overlay-bg">
+					<div className="info-bar">
+						<div>{`current level: ${game.currentLevel}`}</div>
+					</div>
+					<div className="encounter">
+						<Encounter encounterCard={game.currentEncounter}></Encounter>
+					</div>
+					<div className="player-cards-area">
+						<div>
+							<h1>{`Library: ${game.deck.length}`}</h1>
+						</div>
+						<CardList cards={game.hand} actionWhenClicked={(cardID) => {
+							game.playCardFromHandIntoCurrentEncounter(cardID);
+							this.forceUpdate();
+						}}></CardList>
+						<div>
+							<h1>{`Discard pile: ${game.discardPile.length}`}</h1>
+						</div>
+					</div>
 				</div>
 			);
+			// <h1>Cards in your discard pile:</h1>
+			// <CardList cards={game.discardPile}></CardList>
 		} else {
 
 			const backButton = <button onClick={() => {
@@ -61,8 +72,8 @@ class App extends Component {
 			switch (this.state.menuState) {
 				case "main-menu":
 					return (
-						<div className="main-menu container">
-							<h1 className="logo">KWAV 108.3</h1>
+						<div className="main-menu">
+							<h1 className="logo">KWAV 108.5</h1>
 							<div className="main-menu-buttons">
 								<button onClick={() => {
 									game.resetDeckbuilding();
@@ -86,7 +97,7 @@ class App extends Component {
 					);
 				case "deckbuilding":
 					return (
-						<div className="container">
+						<div className="overlay-bg">
 							{backButton}
 							<Deckbuilder game={game} playerWorkingLibrary={game.workingLibrary} playerDeck={game.deck} addCardFromWorkingLibraryToDeck={(cardID) => {
 								game.addCardFromWorkingLibraryToDeck(cardID);
@@ -100,13 +111,9 @@ class App extends Component {
 							}} maxCardsAllowed={game.maxCardsInDeck}></Deckbuilder>
 						</div>
 					);
-				case "game-loop":
-					return (
-						<div>this is the game!</div>
-					);
 				case "record-store":
 					return (
-						<div>
+						<div className="overlay-bg">
 							<button onClick={() => {
 								this.setState({menuState: "main-menu"});
 							}}>back to main menu</button>
@@ -124,7 +131,7 @@ class App extends Component {
 					);
 				case "import-game":
 					return (
-						<div>
+						<div className="overlay-bg">
 							<button onClick={() => {
 								this.setState({menuState: "main-menu"});
 							}}>back to main menu</button>
@@ -143,7 +150,7 @@ class App extends Component {
 					);
 				case "export-game":
 					return (
-						<div>
+						<div className="overlay-bg">
 							<button onClick={() => {
 								this.setState({menuState: "main-menu"});
 							}}>back to main menu</button>
@@ -158,7 +165,7 @@ class App extends Component {
 					);
 				case "credits":
 					return (
-						<div>
+						<div className="overlay-bg">
 							<button onClick={() => {
 								this.setState({menuState: "main-menu"});
 							}}>back to main menu</button>
