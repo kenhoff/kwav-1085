@@ -14,7 +14,7 @@ class Card extends React.Component {
 					<div className={`card-type ${this.props.card.type}`}>{this.props.card.type}</div>
 				</div>
 				<div className="card-image">
-					<img src="/lp_record-512.png"></img>
+					<img src="/lp_record-512.png" role="presentation"></img>
 				</div>
 				<div className="card-mid-bar">
 					<div className={`card-rarity ${rarities[this.props.card.rarity]}`}>{rarities[this.props.card.rarity]}</div>

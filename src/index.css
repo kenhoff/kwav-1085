@@ -73,14 +73,14 @@ html, body {
 }
 .card {
     margin: 1em;
+    padding: 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 200px;
     height: 300px;
-    border: 1px solid black;
-    background-color: gray;
+    background-color: black;
 }
 .card .card-top-bar {
     width: 100%;
@@ -126,15 +126,15 @@ html, body {
 .card-rarity.legendary {
     color: orange;
 }
-.card-type.chillout {
+.chillout {
     color: #05EAFA;
     /* really light blue? */
 }
-.card-type.funky {
+.funky {
     color: #FA056F;
     /* pinkish? */
 }
-.card-type.pump {
+.pump {
     color: yellow;
 }
 button {
@@ -162,6 +162,8 @@ img {
     max-width: 50%;
 }
 .game {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -176,4 +178,5 @@ img {
 }
 .encounter {
     max-width: 400px;
+    text-align: center;
 }

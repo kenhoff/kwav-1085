@@ -20,6 +20,7 @@ class App extends Component {
 			menuState: "main-menu"
 		};
 		game.gameOver = () => {
+			console.log("calling gameover");
 			this.setState({menuState: "main-menu"});
 		}
 
@@ -29,6 +30,7 @@ class App extends Component {
 			try {
 				game = new RadioWavesEngine(JSON.parse(atob(localStorage["radio-waves"])), abilityTypes, abilityCards, encounterCards)
 				game.gameOver = () => {
+					console.log("calling gameover");
 					this.setState({menuState: "main-menu"});
 				}
 				this.forceUpdate();
@@ -36,23 +38,31 @@ class App extends Component {
 		}
 	}
 	render() {
-		if (game.gameState === "started") {
+		if (game.gameState !== "not-started") {
 			// <h1>Cards in your deck:</h1>
 			// <CardList cards={game.deck}></CardList>
+
 			return (
 				<div className="game overlay-bg">
-					<div className="info-bar">
-						<div>{`current level: ${game.currentLevel}`}</div>
-					</div>
 					<div className="encounter">
-						<Encounter encounterCard={game.currentEncounter}></Encounter>
+						<div className="info-bar">
+							<div>{`${game.encountersCompleted}`}</div>
+						</div>
+						<Encounter continue={() => {
+							game.continue();
+							this.forceUpdate();
+						}} gameState={game.gameState} encounterCard={game.currentEncounter}></Encounter>
 					</div>
 					<div className="player-cards-area">
 						<div>
 							<h1>{`Library: ${game.deck.length}`}</h1>
 						</div>
 						<CardList cards={game.hand} actionWhenClicked={(cardID) => {
-							game.playCardFromHandIntoCurrentEncounter(cardID);
+							if (game.gameState == "waiting-for-player") {
+								game.playCardFromHandIntoCurrentEncounter(cardID);
+							} else {
+								game.continue();
+							}
 							this.forceUpdate();
 						}}></CardList>
 						<div>
@@ -64,7 +74,6 @@ class App extends Component {
 			// <h1>Cards in your discard pile:</h1>
 			// <CardList cards={game.discardPile}></CardList>
 		} else {
-
 			const backButton = <button onClick={() => {
 				this.setState({menuState: "main-menu"});
 			}}>back to main menu</button>

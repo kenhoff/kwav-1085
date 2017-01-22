@@ -7,6 +7,7 @@ class Engine {
 		this.maxCardsInHand = 4
 		this.chanceForAward = 0.2
 
+		this.resistances = ["chillout", "funky", "pump"]
 
 		this.gameState = "not-started"
 
@@ -18,8 +19,6 @@ class Engine {
 		this.encountersCompleted = 0;
 		// number of encounters per level?
 		this.encountersPerLevel = 3
-
-		this.calculateCurrentLevel();
 
 		// current level = floor(1 + (number of encounters completed / encounters per level))
 
@@ -38,19 +37,14 @@ class Engine {
 
 	}
 	startGame() {
-		this.gameState = "started"
 		this.encountersCompleted = 0
-		this.calculateCurrentLevel()
 			// load first encounter
 		this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
 		// shuffle deck
 		shuffle(this.deck);
 		// draw cards until hand has N cards
 		this.drawHand()
-	}
-
-	calculateCurrentLevel() {
-		this.currentLevel = Math.floor(1 + (this.encountersCompleted / this.encountersPerLevel))
+		this.gameState = "waiting-for-player"
 	}
 
 	shuffleDiscardIntoDeck() {
@@ -160,42 +154,73 @@ class Engine {
 		}
 	}
 
+	// this is what gets called after a successful encounter, an unsuccessful encounter, and being awarded a card
+	continue () {
+		this.shuffleDiscardIntoDeck()
+		this.drawHand()
+		if (this.gameState == "encounter-success") {
+			// increment level
+			this.encountersCompleted += 1;
+			// if you've completed >12 encounters, you win
+			if (this.encountersCompleted >= 12) {
+				this.gameState = "not-started";
+				console.log("you won!");
+				this.gameOver();
+				return;
+			}
+
+
+			// award new card?
+			if (Math.random() <= this.chanceForAward) {
+				this.awardedCard = this.awardNewCard(Math.ceil(this.encountersCompleted / 3));
+				this.gameState = "card-award"
+			}
+
+			// load up new encounter
+			this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
+
+			this.currentEncounter.resistance = this.resistances[Math.floor(Math.random() * this.resistances.length)]
+
+
+			this.gameState = "waiting-for-player"
+		} else if (this.gameState == "encounter-failed") {
+			// load up new encounter
+			this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
+
+			this.currentEncounter.resistance = this.resistances[Math.floor(Math.random() * this.resistances.length)]
+
+			// at this point, if you've run out of cards, you lose :(
+			if (this.deck.length === 0 && this.hand.length === 0) {
+				this.gameState = "not-started"
+				console.log("you lost :(");
+				this.gameOver()
+				return;
+			}
+			this.gameState = "waiting-for-player"
+		} else if (this.gameState == "card-award") {
+			this.gameState = "waiting-for-player"
+		}
+		this.shuffleDiscardIntoDeck()
+		this.drawHand()
+	}
+
 	// this is the "main loop" of the game
 	playCardFromHandIntoCurrentEncounter(cardID) {
-		this.shuffleDiscardIntoDeck()
 		for (var i = 0; i < this.hand.length; i++) {
 			if (this.hand[i].id === cardID) {
-				// pop card off of hand, store here
 				// resolve encounter
-				// calculate levels and compare
 				if (this.didEncounterSucceed(this.currentEncounter, this.hand[i])) {
+					console.log("encounter success, setting game state....");
 					// if encounter successful, put card in discard pile
 					this.discardPile.push(this.hand[i])
 					this.hand.splice(i, 1)
-					if (Math.random() <= this.chanceForAward) {
-						this.awardNewCard(this.currentLevel)
-					}
-					// increment level
-					this.encountersCompleted += 1;
-					this.calculateCurrentLevel()
-					if (this.currentLevel === 6) {
-						this.gameState = "not-started"
-						console.log("you won!");
-						this.gameOver();
-					}
-					// load up new encounter
-					this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
+					this.gameState = "encounter-success"
 
 				} else {
+					console.log("encounter failed, setting game state....");
 					// if encounter unsuccessful, delete card
 					this.hand.splice(i, 1)
-						// at this point, if you've run out of cards, you lose :(
-					this.shuffleDiscardIntoDeck()
-					if (this.deck.length === 0 && this.hand.length === 0) {
-						this.gameState = "not-started"
-						console.log("you lost :(");
-						this.gameOver()
-					}
+					this.gameState = "encounter-failed"
 				}
 				this.shuffleDiscardIntoDeck()
 				this.drawHand()
@@ -204,18 +229,7 @@ class Engine {
 		}
 	}
 	didEncounterSucceed(encounter, card) {
-		let encounterChanceToSucceed;
-		if (card.type === encounter.resistances[0]) {
-			encounterChanceToSucceed = 0.8
-		} else if (card.type === encounter.resistances[1]) {
-			encounterChanceToSucceed = 0.5
-		} else if (card.type === encounter.resistances[2]) {
-			encounterChanceToSucceed = 0.2
-		}
-		encounterChanceToSucceed += (card.rarity * 0.2)
-		encounterChanceToSucceed -= (this.currentLevel * 0.2)
-		let roll = Math.random()
-		if (roll <= encounterChanceToSucceed) {
+		if (card.type === encounter.resistance) {
 			return true;
 		} else {
 			return false;
@@ -242,6 +256,7 @@ class Engine {
 		this.playerLibrary.push(awardCard)
 		this.deck.push(awardCard)
 		this.saveGame();
+		return awardCard
 
 		// put card in player's deck
 		// put card in player's library
