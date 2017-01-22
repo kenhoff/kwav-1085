@@ -142,7 +142,8 @@ button {
     padding: 1em;
     margin: 1em;
     font-family: 'Righteous', cursive;
-    border: 2px solid rgb(255, 0, 196);;
+    border: 2px solid rgb(255, 0, 196);
+    ;
     color: rgb(255, 0, 196);
     background-color: black
 }
@@ -150,6 +151,15 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+.record-store {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.record-store> * {
+    max-width: 50%;
 }
 .game {
     display: flex;
@@ -164,7 +174,6 @@ img {
     align-items: center;
     width: 100%;
 }
-
 .encounter {
     max-width: 400px;
 }
