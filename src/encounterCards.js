@@ -5,9 +5,9 @@ module.exports = {
 		successText: "Aw yeah, we're feeling that. Thanks sugar :)",
 		failureText: "Hmmmm...maybe next time, honey.",
 		resistances: [
-			"soulful",
-			"driving",
-			"melodic",
+			"pump",
+			"chillout",
+			"funky",
 		]
 	}, {
 		name: "Producer",
@@ -15,9 +15,9 @@ module.exports = {
 		successText: "Ratings are through the roof! Good work kid.",
 		failureText: "Ah, crap...guess I'm gonna have to hold off on that boat for a little bit longer...",
 		resistances: [
-			"driving",
-			"melodic",
-			"soulful",
+			"pump",
+			"chillout",
+			"funky",
 		]
 	}, {
 		name: "Evening",
@@ -25,9 +25,9 @@ module.exports = {
 		successText: "Yeah. That was the right track. You can feel it.",
 		failureText: "Huh. That didn't feel right. Gotta switch it up a little bit.",
 		resistances: [
-			"melodic",
-			"soulful",
-			"driving",
+			"pump",
+			"chillout",
+			"funky",
 		]
 	}],
 	scriptedEncounterCards: []

@@ -1,5 +1,140 @@
+/*
+magenta: FA056F
+amethyst: 490E61
+green: 32FA05
+seafoam: 05EAFA
+orange: FA1505
+*/
+
+* {
+    box-sizing: border-box;
+}
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'Righteous', cursive;
+    color: white;
+    background-color: #490e61;
+}
+.container {
+    height: 100vh;
+    width: 100vw;
+}
+.logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 6em;
+    transform: skewX(-7deg) rotate(-7deg);
+    color: #FA056F;
+}
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.main-menu-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.deckbuilder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+}
+.deckbuilder .library {
+    width: 40%;
+}
+.deckbuilder .deck {
+    width: 40%;
+}
+.deckbuilder .go-button {
+    width: 20%;
+}
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-y: scroll;
+}
+.card {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    background-color: gray;
+}
+.card .card-top-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.card .card-mid-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+.card.common {
+    border: 10px solid white;
+}
+.card.uncommon {
+    border: 10px solid green;
+}
+.card.rare {
+    border: 10px solid blue;
+}
+.card.epic {
+    border: 10px solid purple;
+}
+.card.legendary {
+    border: 10px solid orange;
+}
+.card-rarity.common {
+    color: white;
+}
+.card-rarity.uncommon {
+    color: green;
+}
+.card-rarity.rare {
+    color: blue;
+}
+.card-rarity.epic {
+    color: purple;
+}
+.card-rarity.legendary {
+    color: orange;
+}
+.card-type.chillout {
+    color: #05EAFA;
+    /* really light blue? */
+}
+.card-type.funky {
+    color: #FA056F;
+    /* pinkish? */
+}
+.card-type.pump {
+    color: yellow;
+}
+button {
+    font-size: 1em;
+    padding: 1em;
+    margin: 1em;
+    font-family: 'Righteous', cursive;
+    border: none;
+    color: #FA056F;
+    background-color: #32FA05
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }

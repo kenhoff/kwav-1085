@@ -96,11 +96,13 @@ class Engine {
 		}
 	}
 	addCardFromWorkingLibraryToDeck(cardID) {
-		for (var i = 0; i < this.workingLibrary.length; i++) {
-			if (this.workingLibrary[i].id === cardID) {
-				this.deck.push(this.workingLibrary[i])
-				this.workingLibrary.splice(i, 1);
-				return
+		if (this.deck.length < this.maxCardsInDeck) {
+			for (var i = 0; i < this.workingLibrary.length; i++) {
+				if (this.workingLibrary[i].id === cardID) {
+					this.deck.push(this.workingLibrary[i])
+					this.workingLibrary.splice(i, 1);
+					return
+				}
 			}
 		}
 	}
@@ -115,14 +117,17 @@ class Engine {
 	}
 
 	addCardFromWorkingLibraryToStore(cardID) {
-		for (var i = 0; i < this.workingLibrary.length; i++) {
-			if (this.workingLibrary[i].id === cardID) {
-				this.store.push(this.workingLibrary[i])
-				this.workingLibrary.splice(i, 1);
-				return
+		if (this.store.length < 3) {
+			for (var i = 0; i < this.workingLibrary.length; i++) {
+				if (this.workingLibrary[i].id === cardID) {
+					this.store.push(this.workingLibrary[i])
+					this.workingLibrary.splice(i, 1);
+					return
+				}
 			}
 		}
 	}
+
 	putCardBackFromStoreToWorkingLibrary(cardID) {
 		for (var i = 0; i < this.store.length; i++) {
 			if (this.store[i].id === cardID) {
@@ -173,7 +178,12 @@ class Engine {
 					// increment level
 					this.encountersCompleted += 1;
 					this.calculateCurrentLevel()
-						// load up new encounter
+					if (this.currentLevel === 6) {
+						this.gameState = "not-started"
+						console.log("you won!");
+						this.gameOver();
+					}
+					// load up new encounter
 					this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
 
 				} else {
@@ -183,6 +193,7 @@ class Engine {
 					this.shuffleDiscardIntoDeck()
 					if (this.deck.length === 0 && this.hand.length === 0) {
 						this.gameState = "not-started"
+						console.log("you lost :(");
 						this.gameOver()
 					}
 				}

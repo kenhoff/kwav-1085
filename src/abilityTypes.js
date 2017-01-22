@@ -1,11 +1,11 @@
 module.exports = {
-	"soulful": {
-		name: "Soulful"
+	"pump": {
+		name: "Pump"
 	},
-	"driving": {
-		name: "Driving"
+	"chillout": {
+		name: "Chillout"
 	},
-	"melodic": {
-		name: "Melodic"
+	"funky": {
+		name: "Funky"
 	}
 };

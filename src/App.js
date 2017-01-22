@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import Deckbuilder from "./Deckbuilder.jsx";
 import RadioWavesEngine from "./engine.js";
 import abilityTypes from "./abilityTypes.js";
-import abilityCards from "./abilityCards.js";
 import encounterCards from "./encounterCards.js";
 import CardList from "./CardList.jsx";
 import Encounter from "./Encounter.jsx";
 import Store from "./Store.jsx";
 import ImportGame from "./ImportGame.jsx";
+
+import abilityCards from "./abilityCards.js";
 
 let game = new RadioWavesEngine([], abilityTypes, abilityCards, encounterCards);
 
@@ -18,27 +19,26 @@ class App extends Component {
 		this.state = {
 			menuState: "main-menu"
 		};
+		game.gameOver = () => {
+			this.setState({menuState: "main-menu"});
+		}
 
 	}
 	componentDidMount() {
 		if (localStorage["radio-waves"]) {
 			try {
 				game = new RadioWavesEngine(JSON.parse(atob(localStorage["radio-waves"])), abilityTypes, abilityCards, encounterCards)
-				this.forceUpdate();
-			} catch (e) {
-				game = new RadioWavesEngine([], abilityTypes, abilityCards, encounterCards);
-				this.forceUpdate();
-			} finally {
 				game.gameOver = () => {
 					this.setState({menuState: "main-menu"});
 				}
-			}
+				this.forceUpdate();
+			} finally {}
 		}
 	}
 	render() {
 		if (game.gameState === "started") {
 			return (
-				<div>
+				<div className="container">
 					<div>{`current level: ${game.currentLevel}`}</div>
 					<h1>Cards in your deck:</h1>
 					<CardList cards={game.deck}></CardList>
@@ -61,30 +61,32 @@ class App extends Component {
 			switch (this.state.menuState) {
 				case "main-menu":
 					return (
-						<div>
-							<h1>R a d i o W a v e s</h1>
-							<button onClick={() => {
-								game.resetDeckbuilding();
-								this.setState({menuState: "deckbuilding"});
-							}}>New Game</button>
-							<button onClick={() => {
-								game.resetDeckbuilding();
-								this.setState({menuState: "record-store"});
-							}}>Record Store</button>
-							<button onClick={() => {
-								this.setState({menuState: "import-game"});
-							}}>Import Game</button>
-							<button onClick={() => {
-								this.setState({menuState: "export-game"});
-							}}>Export Game</button>
-							<button onClick={() => {
-								this.setState({menuState: "credits"});
-							}}>Credits</button>
+						<div className="main-menu container">
+							<h1 className="logo">KWAV 108.3</h1>
+							<div className="main-menu-buttons">
+								<button onClick={() => {
+									game.resetDeckbuilding();
+									this.setState({menuState: "deckbuilding"});
+								}}>New Game</button>
+								<button onClick={() => {
+									game.resetDeckbuilding();
+									this.setState({menuState: "record-store"});
+								}}>Record Store</button>
+								<button onClick={() => {
+									this.setState({menuState: "import-game"});
+								}}>Import Game</button>
+								<button onClick={() => {
+									this.setState({menuState: "export-game"});
+								}}>Export Game</button>
+								<button onClick={() => {
+									this.setState({menuState: "credits"});
+								}}>Credits</button>
+							</div>
 						</div>
 					);
 				case "deckbuilding":
 					return (
-						<div>
+						<div className="container">
 							{backButton}
 							<Deckbuilder game={game} playerWorkingLibrary={game.workingLibrary} playerDeck={game.deck} addCardFromWorkingLibraryToDeck={(cardID) => {
 								game.addCardFromWorkingLibraryToDeck(cardID);
@@ -95,7 +97,7 @@ class App extends Component {
 							}} startGame={() => {
 								game.startGame();
 								this.forceUpdate();
-							}}></Deckbuilder>
+							}} maxCardsAllowed={game.maxCardsInDeck}></Deckbuilder>
 						</div>
 					);
 				case "game-loop":
@@ -131,6 +133,9 @@ class App extends Component {
 							</h1>
 							<ImportGame importGame={(gameString) => {
 								game = new RadioWavesEngine(JSON.parse(atob(gameString)), abilityTypes, abilityCards, encounterCards);
+								game.gameOver = () => {
+									this.setState({menuState: "main-menu"});
+								}
 								game.saveGame();
 								this.forceUpdate();
 							}}></ImportGame>

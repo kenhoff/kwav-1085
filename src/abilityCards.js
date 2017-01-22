@@ -1,77 +1,77 @@
 module.exports = [{
-	id: "repetitionWar",
-	title: "Repetition War / Climb with suprising strides / Recoil Of The Well",
-	type: "soulful",
+	id: 1,
+	title: "Sedona Mainframe",
+	type: "pump",
 	rarity: 1
 }, {
-	id: "dyingSaint",
-	title: "Dying Saint / Doing everything wrong / Neutral Ozone",
-	type: "driving",
+	id: 2,
+	title: "Neon Coast",
+	type: "chillout",
 	rarity: 1
 }, {
-	id: "seriousScheme",
-	title: "Serious Scheme / Never yourself / Balanced Household",
-	type: "melodic",
+	id: 3,
+	title: "Computer Hawk",
+	type: "funky",
 	rarity: 1
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "driving",
+	id: 4,
+	title: "LA Cyber",
+	type: "chillout",
 	rarity: 2
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "melodic",
+	id: 5,
+	title: "Daytona Atmosphere",
+	type: "funky",
 	rarity: 2
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "soulful",
+	id: 6,
+	title: "Stellar Waves",
+	type: "pump",
 	rarity: 2
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "driving",
+	id: 7,
+	title: "Neutral Atmoshpere",
+	type: "chillout",
 	rarity: 3
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "melodic",
+	id: 8,
+	title: "Ozone Drive",
+	type: "funky",
 	rarity: 3
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "soulful",
+	id: 9,
+	title: "Daytona Fiero",
+	type: "pump",
 	rarity: 3
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "driving",
+	id: 10,
+	title: "Arcade Delorean",
+	type: "chillout",
 	rarity: 4
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "melodic",
+	id: 11,
+	title: "Jupiter Mainframe",
+	type: "funky",
 	rarity: 4
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "soulful",
+	id: 12,
+	title: "LA Arcade",
+	type: "pump",
 	rarity: 4
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "driving",
+	id: 13,
+	title: "Street Laptop",
+	type: "chillout",
 	rarity: 5
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "melodic",
+	id: 14,
+	title: "Star Arcade",
+	type: "funky",
 	rarity: 5
 }, {
-	id: "missingMojo",
-	title: "Missing Mojo / Life in your own way / Unstoppable Cash And The Stranger",
-	type: "soulful",
+	id: 15,
+	title: "Neutral Ozone",
+	type: "pump",
 	rarity: 5
 }]
 

@@ -6,18 +6,22 @@ class Deckbuilder extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h1>this the deckbuilding part</h1>
-				<h2>cards in your library (click to move to deck)</h2>
-				<CardList cards={this.props.playerWorkingLibrary} actionWhenClicked={(cardID) => {
-					this.props.addCardFromWorkingLibraryToDeck(cardID);
-				}}></CardList>
-				<h2>cards in your deck (click to move to library)</h2>
+			<div className="deckbuilder">
+				<div className="library">
+					<h2>Library</h2>
+					<CardList cards={this.props.playerWorkingLibrary} actionWhenClicked={(cardID) => {
+						this.props.addCardFromWorkingLibraryToDeck(cardID);
+					}}></CardList>
+				</div>
+				<div className="deck">
+					<h2>{`Deck ${this.props.playerDeck.length} / ${this.props.maxCardsAllowed} cards`}</h2>
 					<CardList cards={this.props.playerDeck} actionWhenClicked={(cardID) => {
 						this.props.putCardBackFromDeckToWorkingLibrary(cardID)
 					}}></CardList>
-				<h2>All done?</h2>
-				<button onClick={this.props.startGame}>start game</button>
+				</div>
+				<div className="go-button">
+					<button onClick={this.props.startGame}>Start Playing --></button>
+				</div>
 			</div>
 		)
 	}
