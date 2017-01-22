@@ -2,17 +2,20 @@ module.exports = [{
 	id: 1,
 	title: "Sedona Mainframe",
 	type: "pump",
-	rarity: 1
+	rarity: 1,
+	image: "albums1.png"
 }, {
 	id: 2,
 	title: "Neon Coast",
 	type: "chillout",
+	image: "albums1.png",
 	rarity: 1
 }, {
 	id: 3,
 	title: "Computer Hawk",
 	type: "funky",
-	rarity: 1
+	rarity: 1,
+	image: "albums1.png"
 }, {
 	id: 4,
 	title: "LA Cyber",
