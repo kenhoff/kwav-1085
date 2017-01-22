@@ -7,7 +7,10 @@ module.exports = {
 		resistance: "funky",
 		image: "/img/caller1.png",
 		successImage: "/img/caller1_success.png",
-		failureImage: "/img/caller1_fail.png"
+		failureImage: "/img/caller1_fail.png",
+		entranceSoundID: "callerEntrance",
+		successSoundID: "callerSuccess",
+		failureSoundID: "callerFailure",
 	}, {
 		name: "Producer",
 		text: "Kid! I don't get it...we're just not clicking with the young kids of today. Do something about it!",
@@ -16,7 +19,12 @@ module.exports = {
 		resistance: "pump",
 		image: "/img/producer1.png",
 		successImage: "/img/producer1_success.png",
-		failureImage: "/img/producer1_fail.png"
+		failureImage: "/img/producer1_fail.png",
+		entranceSoundID: "producerEntrance",
+		successSoundID: "producerSuccess",
+		failureSoundID: "producerFailure",
+
+
 	}, {
 		name: "Evening",
 		text: "You look out over the twinkling lights of LA. The air is cool, quiet, pensive. What do all of those night souls want to hear tonight?",
@@ -25,7 +33,10 @@ module.exports = {
 		resistance: "chillout",
 		image: "/img/evening1.png",
 		successImage: "/img/evening1_success.png",
-		failureImage: "/img/evening1_fail.png"
+		failureImage: "/img/evening1_fail.png",
+		entranceSoundID: "eveningEntrance",
+		successSoundID: "eveningSuccess",
+		failureSoundID: "eveningFailure",
 	}],
 	scriptedEncounterCards: []
 }

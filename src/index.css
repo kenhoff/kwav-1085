@@ -48,6 +48,8 @@ html, body {
     justify-content: space-around;
 }
 .overlay-bg {
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 .deckbuilder {
@@ -72,6 +74,7 @@ html, body {
     overflow-y: scroll;
 }
 .card {
+    cursor: pointer;
     margin: 1em;
     padding: 1em;
     display: flex;
@@ -138,6 +141,7 @@ html, body {
     color: yellow;
 }
 button {
+    cursor: pointer;
     font-size: 1em;
     padding: 1em;
     margin: 1em;

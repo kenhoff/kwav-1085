@@ -38,8 +38,9 @@ class Engine {
 	}
 	startGame() {
 		this.encountersCompleted = 0
-			// load first encounter
-		this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
+
+		this.setNewEncounter();
+
 		// shuffle deck
 		shuffle(this.deck);
 		// draw cards until hand has N cards
@@ -146,6 +147,14 @@ class Engine {
 			}
 			// need to adjust player's library, and save
 			// just make players library now equal to the working library? and add the new card to it?
+
+			// play transmute noise
+			let audioSource = document.getElementById("transmute");
+			if (audioSource) {
+				audioSource.play();
+			}
+
+
 			this.playerLibrary = this.workingLibrary.slice();
 			this.playerLibrary.push(newCard);
 			this.store = [];
@@ -158,7 +167,7 @@ class Engine {
 	continue () {
 		this.shuffleDiscardIntoDeck()
 		this.drawHand()
-		if (this.gameState == "encounter-success") {
+		if (this.gameState === "encounter-success") {
 			// increment level
 			this.encountersCompleted += 1;
 			// if you've completed >12 encounters, you win
@@ -176,18 +185,12 @@ class Engine {
 				this.gameState = "card-award"
 			}
 
-			// load up new encounter
-			this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
-
-			this.currentEncounter.resistance = this.resistances[Math.floor(Math.random() * this.resistances.length)]
-
+			this.setNewEncounter();
 
 			this.gameState = "waiting-for-player"
-		} else if (this.gameState == "encounter-failed") {
-			// load up new encounter
-			this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
+		} else if (this.gameState === "encounter-failed") {
 
-			this.currentEncounter.resistance = this.resistances[Math.floor(Math.random() * this.resistances.length)]
+			this.setNewEncounter();
 
 			// at this point, if you've run out of cards, you lose :(
 			if (this.deck.length === 0 && this.hand.length === 0) {
@@ -197,11 +200,25 @@ class Engine {
 				return;
 			}
 			this.gameState = "waiting-for-player"
-		} else if (this.gameState == "card-award") {
+		} else if (this.gameState === "card-award") {
 			this.gameState = "waiting-for-player"
 		}
 		this.shuffleDiscardIntoDeck()
 		this.drawHand()
+	}
+
+	setNewEncounter() {
+		// load up new encounter
+		this.currentEncounter = this.encounterCards.randomEncounterCards[Math.floor(Math.random() * this.encounterCards.randomEncounterCards.length)];
+
+		this.currentEncounter.resistance = this.resistances[Math.floor(Math.random() * this.resistances.length)]
+
+		// if encounter entrance noise exists, play it
+		let audioSource = document.getElementById(this.currentEncounter.entranceSoundID);
+		if (audioSource) {
+			audioSource.play();
+		}
+
 	}
 
 	// this is the "main loop" of the game
@@ -209,15 +226,44 @@ class Engine {
 		for (var i = 0; i < this.hand.length; i++) {
 			if (this.hand[i].id === cardID) {
 				// resolve encounter
+
+				// first, play "play" sound
+				let audioSources = document.getElementsByClassName("play-song");
+				if (audioSources.length > 0) {
+					audioSources[Math.floor(Math.random() * audioSources.length)].play();
+				}
+
 				if (this.didEncounterSucceed(this.currentEncounter, this.hand[i])) {
-					console.log("encounter success, setting game state....");
+					// console.log("encounter success, setting game state....");
+
+					setTimeout(() => {
+						// play successful sound for encounter 1 second later
+						let audioSource = document.getElementById(this.currentEncounter.successSoundID);
+						if (audioSource) {
+							audioSource.play();
+						}
+					}, 1000);
+
+
+
+
 					// if encounter successful, put card in discard pile
 					this.discardPile.push(this.hand[i])
 					this.hand.splice(i, 1)
 					this.gameState = "encounter-success"
 
 				} else {
-					console.log("encounter failed, setting game state....");
+					// console.log("encounter failed, setting game state....");
+
+					setTimeout(() => {
+						// play failed sound for encounter 1 second later
+						let audioSource = document.getElementById(this.currentEncounter.failureSoundID);
+						if (audioSource) {
+							audioSource.play();
+						}
+					}, 1000);
+
+
 					// if encounter unsuccessful, delete card
 					this.hand.splice(i, 1)
 					this.gameState = "encounter-failed"

@@ -17,9 +17,9 @@ class Encounter extends React.Component {
 			);
 		}
 		let imageSrc = this.props.encounterCard.image
-		if (this.props.gameState == "encounter-success") {
+		if (this.props.gameState === "encounter-success") {
 			imageSrc = this.props.encounterCard.successImage
-		} else if (this.props.gameState == "encounter-failed") {
+		} else if (this.props.gameState === "encounter-failed") {
 			imageSrc = this.props.encounterCard.failureImage
 		}
 

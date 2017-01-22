@@ -7,6 +7,7 @@ import CardList from "./CardList.jsx";
 import Encounter from "./Encounter.jsx";
 import Store from "./Store.jsx";
 import ImportGame from "./ImportGame.jsx";
+import Soundboard from "./Soundboard.jsx";
 
 import abilityCards from "./abilityCards.js";
 
@@ -58,7 +59,7 @@ class App extends Component {
 							<h1>{`Library: ${game.deck.length}`}</h1>
 						</div>
 						<CardList cards={game.hand} actionWhenClicked={(cardID) => {
-							if (game.gameState == "waiting-for-player") {
+							if (game.gameState === "waiting-for-player") {
 								game.playCardFromHandIntoCurrentEncounter(cardID);
 							} else {
 								game.continue();
@@ -98,6 +99,9 @@ class App extends Component {
 								<button onClick={() => {
 									this.setState({menuState: "export-game"});
 								}}>Export Game</button>
+								<button onClick={() => {
+									this.setState({menuState: "soundboard"});
+								}}>Soundboard</button>
 								<button onClick={() => {
 									this.setState({menuState: "credits"});
 								}}>Credits</button>
@@ -170,6 +174,13 @@ class App extends Component {
 								{`To take your game to another computer, just copy and paste this code in the "import game" section:`}
 							</p>
 							<p>{localStorage["radio-waves"]}</p>
+						</div>
+					);
+				case "soundboard":
+					return (
+						<div className="overlay-bg">
+							{backButton}
+							<Soundboard></Soundboard>
 						</div>
 					);
 				case "credits":
