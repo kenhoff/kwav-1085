@@ -4,8 +4,6 @@ class Soundboard extends React.Component {
 	render() {
 		return (
 			<div>
-				<div>
-				</div>
 				<h1>Soundboard</h1>
 				<button onClick={() => {
 					document.getElementById("soundboard-caller-entrance").play();
@@ -26,8 +24,6 @@ class Soundboard extends React.Component {
 					document.getElementById("soundboard-evening-failure").play();
 				}}>Evening Failure</button>
 				<button onClick={() => {
-						console.log("producer entrance?");
-						console.log(document.getElementById("soundboard-producer-entrance"))
 					document.getElementById("soundboard-producer-entrance").play();
 				}}>Producer Entrance</button>
 				<button onClick={() => {
@@ -63,8 +59,6 @@ class Soundboard extends React.Component {
 				<button onClick={() => {
 					document.getElementById("soundboard-store-exchange").play();
 				}}>Record Store</button>
-
-
 
 			</div>
 		)

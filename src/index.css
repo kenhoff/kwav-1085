@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     font-family: 'Righteous', cursive;
     color: white;
-    background-image: url("/img/background.jpg");
+    background-image: url("/img/background.jpeg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -48,8 +48,8 @@ html, body {
     justify-content: space-around;
 }
 .overlay-bg {
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 .deckbuilder {
@@ -76,16 +76,19 @@ html, body {
 .card {
     cursor: pointer;
     margin: 1em;
-    padding: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    ;
     align-items: center;
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    /*height: 250px;*/
     background-color: black;
+    border-width: 5px;
+    border-style: solid;
 }
-.card .card-top-bar {
+.card .card-bottom-bar {
+    padding: 1em;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -100,19 +103,19 @@ html, body {
     justify-content: flex-end;
 }
 .card.common {
-    border: 10px solid white;
+    border-color: white;
 }
 .card.uncommon {
-    border: 10px solid green;
+    border-color: green;
 }
 .card.rare {
-    border: 10px solid blue;
+    border-color: blue;
 }
 .card.epic {
-    border: 10px solid purple;
+    border-color: purple;
 }
 .card.legendary {
-    border: 10px solid orange;
+    border-color: orange;
 }
 .card-rarity.common {
     color: white;

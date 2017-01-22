@@ -8,6 +8,7 @@ import Encounter from "./Encounter.jsx";
 import Store from "./Store.jsx";
 import ImportGame from "./ImportGame.jsx";
 import Soundboard from "./Soundboard.jsx";
+import Gallery from "./Gallery.jsx";
 
 import abilityCards from "./abilityCards.js";
 
@@ -45,6 +46,11 @@ class App extends Component {
 
 			return (
 				<div className="game overlay-bg">
+					<button onClick={() => {
+						game.gameState = "not-started";
+						this.forceUpdate();
+						this.setState({menuState: "main-menu"});
+					}}>exit game</button>
 					<div className="encounter">
 						<div className="info-bar">
 							<div>{`${game.encountersCompleted}`}</div>
@@ -100,8 +106,20 @@ class App extends Component {
 									this.setState({menuState: "export-game"});
 								}}>Export Game</button>
 								<button onClick={() => {
+									this.setState({menuState: "gallery"});
+								}}>Gallery</button>
+								<button onClick={() => {
 									this.setState({menuState: "soundboard"});
 								}}>Soundboard</button>
+								<button onClick={() => {
+									localStorage.clear();
+									game = new RadioWavesEngine([], abilityTypes, abilityCards, encounterCards);
+									game.gameOver = () => {
+										console.log("calling gameover");
+										this.setState({menuState: "main-menu"});
+									}
+									this.forceUpdate();
+								}}>Reset Game</button>
 								<button onClick={() => {
 									this.setState({menuState: "credits"});
 								}}>Credits</button>
@@ -174,6 +192,13 @@ class App extends Component {
 								{`To take your game to another computer, just copy and paste this code in the "import game" section:`}
 							</p>
 							<p>{localStorage["radio-waves"]}</p>
+						</div>
+					);
+				case "gallery":
+					return (
+						<div className="overlay-bg">
+							{backButton}
+							<Gallery></Gallery>
 						</div>
 					);
 				case "soundboard":
