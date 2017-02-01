@@ -13,7 +13,7 @@ class ImportGame extends React.Component {
 				<input value={this.state.inputField} onChange={(e) => {
 					this.setState({inputField: e.target.value});
 				}}></input>
-				<button onClick={() => {
+				<button className="kwav-button" onClick={() => {
 					this.props.importGame(this.state.inputField)
 				}}>import game</button>
 			</div>

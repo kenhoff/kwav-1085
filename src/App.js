@@ -81,7 +81,7 @@ class App extends Component {
 			// <h1>Cards in your discard pile:</h1>
 			// <CardList cards={game.discardPile}></CardList>
 		} else {
-			const backButton = <button onClick={() => {
+			const backButton = <button className="kwav-button" onClick={() => {
 				this.setState({menuState: "main-menu"});
 			}}>back to main menu</button>
 
@@ -90,7 +90,7 @@ class App extends Component {
 					return (
 						<div className="main-menu">
 							<h1 className="logo">KWAV 108.5</h1>
-							<div className="main-menu-buttons">
+							<div className="main-menu-buttons button-menu">
 								<button onClick={() => {
 									game.resetDeckbuilding();
 									this.setState({menuState: "deckbuilding"});
@@ -111,6 +111,9 @@ class App extends Component {
 								<button onClick={() => {
 									this.setState({menuState: "soundboard"});
 								}}>Soundboard</button>
+								<a href="https://github.com/kenhoff/radio-waves" target="_blank">
+									Source code
+								</a>
 								<button onClick={() => {
 									localStorage.clear();
 									game = new RadioWavesEngine([], abilityTypes, abilityCards, encounterCards);
@@ -145,9 +148,7 @@ class App extends Component {
 				case "record-store":
 					return (
 						<div className="overlay-bg">
-							<button onClick={() => {
-								this.setState({menuState: "main-menu"});
-							}}>back to main menu</button>
+							{backButton}
 							<Store playerWorkingLibrary={game.workingLibrary} store={game.store} addCardFromWorkingLibraryToStore={(cardID) => {
 								game.addCardFromWorkingLibraryToStore(cardID);
 								this.forceUpdate()
@@ -163,35 +164,35 @@ class App extends Component {
 				case "import-game":
 					return (
 						<div className="overlay-bg">
-							<button onClick={() => {
-								this.setState({menuState: "main-menu"});
-							}}>back to main menu</button>
-							<h1>
-								import game
-							</h1>
-							<ImportGame importGame={(gameString) => {
-								game = new RadioWavesEngine(JSON.parse(atob(gameString)), abilityTypes, abilityCards, encounterCards);
-								game.gameOver = () => {
-									this.setState({menuState: "main-menu"});
-								}
-								game.saveGame();
-								this.forceUpdate();
-							}}></ImportGame>
+							{backButton}
+							<div className="kwav-section">
+								<h1>
+									import game
+								</h1>
+								<ImportGame importGame={(gameString) => {
+									game = new RadioWavesEngine(JSON.parse(atob(gameString)), abilityTypes, abilityCards, encounterCards);
+									game.gameOver = () => {
+										this.setState({menuState: "main-menu"});
+									}
+									game.saveGame();
+									this.forceUpdate();
+								}}></ImportGame>
+							</div>
 						</div>
 					);
 				case "export-game":
 					return (
 						<div className="overlay-bg">
-							<button onClick={() => {
-								this.setState({menuState: "main-menu"});
-							}}>back to main menu</button>
-							<h1>
-								export game
-							</h1>
-							<p>
-								{`To take your game to another computer, just copy and paste this code in the "import game" section:`}
-							</p>
-							<p>{localStorage["radio-waves"]}</p>
+							{backButton}
+							<div className="kwav-section">
+								<h1>
+									export game
+								</h1>
+								<p>
+									{`To take your game to another computer, just copy and paste this code in the "import game" section:`}
+								</p>
+								<p>{localStorage["radio-waves"]}</p>
+							</div>
 						</div>
 					);
 				case "gallery":
@@ -211,9 +212,7 @@ class App extends Component {
 				case "credits":
 					return (
 						<div className="overlay-bg">
-							<button onClick={() => {
-								this.setState({menuState: "main-menu"});
-							}}>back to main menu</button>
+							{backButton}
 							<h1>
 								Bananacat + Kasey + Josh + Ken!
 							</h1>
