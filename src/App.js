@@ -221,9 +221,9 @@ class App extends Component {
 								</h1>
 								<img role="presentation" src="img/bananacat_1024.png"></img>
 								<p>{"Bananacat Studios is composed of "}
-									<a>Kasey Corlett</a>{", "}
-									<a>Joshua Du Chene</a>{", and "}
-									<a>Ken Hoff</a>{". They like to get together occasionally to do epic game jams. Yay!"}</p>
+									<a href="http://kaseykingdom.tumblr.com/">Kasey Corlett</a>{", "}
+									<a href="http://joshuaduchene.audio/">Joshua Du Chene</a>{", and "}
+									<a href="https://hoff.tech/">Ken Hoff</a>{". They like to get together occasionally to do epic game jams. Yay!"}</p>
 							</div>
 						</div>
 					);
