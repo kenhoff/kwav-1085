@@ -213,9 +213,16 @@ class App extends Component {
 					return (
 						<div className="overlay-bg">
 							{backButton}
-							<h1>
-								Bananacat + Kasey + Josh + Ken!
-							</h1>
+							<div className="kwav-section credits">
+								<h1>
+									Bananacat Studios!
+								</h1>
+								<img src="/img/bananacat_1024.png"></img>
+								<p>{"Bananacat Studios is composed of "}
+									<a>Kasey Corlett</a>{", "}
+									<a>Joshua Du Chene</a>{", and "}
+									<a>Ken Hoff</a>{". They like to get together occasionally to do epic game jams. Yay!"}</p>
+							</div>
 						</div>
 					);
 				default:
