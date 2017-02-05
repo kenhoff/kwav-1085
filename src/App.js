@@ -217,7 +217,7 @@ class App extends Component {
 								<h1>
 									Bananacat Studios!
 								</h1>
-								<img src="/img/bananacat_1024.png"></img>
+								<img role="presentation" src="img/bananacat_1024.png"></img>
 								<p>{"Bananacat Studios is composed of "}
 									<a>Kasey Corlett</a>{", "}
 									<a>Joshua Du Chene</a>{", and "}

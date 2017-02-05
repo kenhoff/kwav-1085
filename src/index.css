@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     font-family: 'Righteous', cursive;
     color: white;
-    background-image: url("/img/background.jpeg");
+    background-image: url("../public/img/background.jpeg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
