@@ -144,14 +144,12 @@ html, body {
 .pump {
     color: yellow;
 }
-
 .button-menu {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .button-menu> button, .button-menu> a, .kwav-button {
     cursor: pointer;
     font-size: 1em;
@@ -197,7 +195,6 @@ img {
     max-width: 400px;
     text-align: center;
 }
-
 .kwav-section {
     text-align: center;
     padding: 1em;
@@ -207,7 +204,6 @@ a, a:visited {
     text-decoration: none;
     border-bottom: 2px solid rgb(255, 0, 196);
 }
-
 .gallery {
     display: flex;
     flex-direction: row;
@@ -215,20 +211,20 @@ a, a:visited {
     justify-content: center;
     align-items: center;
 }
-
 .gallery a {
     border: none;
     margin: 1em;
     width: 300px;
 }
-
+.gallery img {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+}
 .credits {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 .credits img {
     width: 300px;
 }

@@ -3,19 +3,19 @@ module.exports = [{
 	title: "Sedona Mainframe",
 	type: "funky",
 	rarity: 1,
-	image: "/img/albums1.jpeg"
+	image: "img/albums1.jpeg"
 }, {
 	id: 2,
 	title: "Hard Drive",
 	type: "pump",
 	rarity: 1,
-	image: "/img/albums2.jpeg"
+	image: "img/albums2.jpeg"
 },  {
 	id: 3,
 	title: "Star Arcade",
 	type: "chillout",
 	rarity: 1,
-	image: "/img/albums4.jpeg"
+	image: "img/albums4.jpeg"
 }, {
 	id: 4,
 	type: "funky",
