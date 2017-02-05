@@ -3,7 +3,7 @@ import rarities from "./rarityLevels.js";
 
 class Card extends React.Component {
 	render() {
-		let cardImg = "/vinyl-icon.png";
+		let cardImg = "vinyl-icon.png";
 		if (this.props.card.image) {
 			cardImg = this.props.card.image
 		}
