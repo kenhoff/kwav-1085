@@ -13,7 +13,7 @@ class Encounter extends React.Component {
 		let continueButton = null;
 		if (((this.props.gameState === "encounter-success") || (this.props.gameState === "encounter-failed"))) {
 			continueButton = (
-				<button onClick={this.props.continue}>Continue</button>
+				<button className="kwav-button" onClick={this.props.continue}>Continue</button>
 			);
 		}
 		let imageSrc = this.props.encounterCard.image

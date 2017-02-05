@@ -45,35 +45,37 @@ class App extends Component {
 			// <CardList cards={game.deck}></CardList>
 
 			return (
-				<div className="game overlay-bg">
-					<button onClick={() => {
-						game.gameState = "not-started";
-						this.forceUpdate();
-						this.setState({menuState: "main-menu"});
-					}}>exit game</button>
-					<div className="encounter">
-						<div className="info-bar">
-							<div>{`${game.encountersCompleted}`}</div>
-						</div>
-						<Encounter continue={() => {
-							game.continue();
+				<div className="overlay-bg">
+					<div className="game">
+						<button className="kwav-button" onClick={() => {
+							game.gameState = "not-started";
 							this.forceUpdate();
-						}} gameState={game.gameState} encounterCard={game.currentEncounter}></Encounter>
-					</div>
-					<div className="player-cards-area">
-						<div>
-							<h1>{`Library: ${game.deck.length}`}</h1>
-						</div>
-						<CardList cards={game.hand} actionWhenClicked={(cardID) => {
-							if (game.gameState === "waiting-for-player") {
-								game.playCardFromHandIntoCurrentEncounter(cardID);
-							} else {
+							this.setState({menuState: "main-menu"});
+						}}>exit game</button>
+						<div className="encounter">
+							<div className="info-bar">
+								<div>{`${game.encountersCompleted}`}</div>
+							</div>
+							<Encounter continue={() => {
 								game.continue();
-							}
-							this.forceUpdate();
-						}}></CardList>
-						<div>
-							<h1>{`Discard pile: ${game.discardPile.length}`}</h1>
+								this.forceUpdate();
+							}} gameState={game.gameState} encounterCard={game.currentEncounter}></Encounter>
+						</div>
+						<div className="player-cards-area">
+							<div>
+								<h1>{`Library: ${game.deck.length}`}</h1>
+							</div>
+							<CardList cards={game.hand} actionWhenClicked={(cardID) => {
+								if (game.gameState === "waiting-for-player") {
+									game.playCardFromHandIntoCurrentEncounter(cardID);
+								} else {
+									game.continue();
+								}
+								this.forceUpdate();
+							}}></CardList>
+							<div>
+								<h1>{`Discard pile: ${game.discardPile.length}`}</h1>
+							</div>
 						</div>
 					</div>
 				</div>

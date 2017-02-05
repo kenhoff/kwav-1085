@@ -3,7 +3,6 @@ import React, {PropTypes} from 'react'
 import CardList from "./CardList.jsx";
 
 class Deckbuilder extends React.Component {
-
 	render() {
 		return (
 			<div className="deckbuilder">
@@ -20,12 +19,12 @@ class Deckbuilder extends React.Component {
 					}}></CardList>
 				</div>
 				<div className="go-button">
-					<button onClick={this.props.startGame}>Start Playing --></button>
+					<button className="kwav-button" onClick={this.props.startGame}>{"Start Playing -->"}</button>
 				</div>
 			</div>
-		)
-	}
-}
+		);
+	};
+};
 
 Deckbuilder.propTypes = {
 	playerWorkingLibrary: PropTypes.array.isRequired,
